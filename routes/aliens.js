@@ -14,6 +14,18 @@ router.get('/', async(req, res) => {
     }
 })
 
+router.get('/:id', async(req, res) => {
+    try {
+
+        // fetch all the aliens from db and send 
+        const aliens = await Alien.findById(req.params.id);
+        res.json(aliens);
+
+    }catch(err) {
+        res.send('Err: ', err);
+    }
+})
+
 router.post('/', async(req, res) => {
 
     const alien = new Alien({
